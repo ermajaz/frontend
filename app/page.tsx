@@ -3,6 +3,7 @@ import BicycleComparison from "@/components/sections/bicycle-comparison/BicycleC
 import BicycleRide from "@/components/sections/bicycle-ride/BicycleRide";
 import Category from "@/components/sections/category";
 import HeroSection from "@/components/sections/hero";
+import JungleBook from "@/components/sections/jungle-book-tour/JungleBook";
 
 export default function LandingPage() {
   return (
@@ -12,7 +13,7 @@ export default function LandingPage() {
       <BicycleComparison />
       <BicycleRide />
       <Category />
-      {/* <JungleBookTour /> */}
+      <JungleBook />
       <AboutRadkaat />
     </div>
   );
