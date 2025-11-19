@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AboutRadkaatFlagImage from "./components/AboutRadkaatFlagImage";
 import AboutRadkaatContent from "./components/AboutRadkaatContent";
+import AboutRadkaatFlagImageOverlay from "./components/AboutRadkaatFlagImageOverlay";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,6 +57,7 @@ export default function AboutRadkaatDesktop() {
       className="relative w-full h-[522px] flex flex-col lg:flex-row overflow-hidden"
     >
       <AboutRadkaatFlagImage />
+      <AboutRadkaatFlagImageOverlay />
       <AboutRadkaatContent />
     </section>
   );

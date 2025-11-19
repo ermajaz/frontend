@@ -4,13 +4,13 @@ import Image from "next/image";
 
 export default function FooterImage() {
   return (
-    <div className="relative hidden lg:flex w-full h-[500px]">
-      <Image
+    <div className="relative hidden sm:flex w-full h-[220px] sm:h-[280px] md:h-[350px] lg:h-[500px]">
+      <Image quality={100}
         src="/images/footer-img.jpg"
         alt="Radkaat Riders"
         fill
-        quality={100}
         priority
+        sizes="100vw"
         className="object-cover"
       />
     </div>

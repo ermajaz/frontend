@@ -43,7 +43,7 @@ export default function RideStepsDesktop() {
   return (
     <div
       ref={stepsRef}
-      className="w-full pt-12 pb-20 flex flex-wrap justify-center gap-16"
+      className="w-full flex flex-wrap justify-center gap-16"
     >
       {steps?.map((step, i) => (
         <RideStepDesktop

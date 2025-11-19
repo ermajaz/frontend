@@ -1,7 +1,8 @@
 export interface BikeProfile {
-title: string;
-level: string;
-description: string;
+  id: number;
+  title: string;
+  level: string;
+  description: string;
 }
 
 export interface RadarDataPoint {
@@ -15,9 +16,9 @@ export type BikeModel = string;
 
 
 export type ComparisonCategory =
-| "Comfort & Ergonomics"
-| "Performance"
-| "Durability & Build"
-| "Utility & Convenience"
-| "Terrain Adaptability"
-| "Price";
+  | "Comfort & Ergonomics"
+  | "Performance"
+  | "Durability & Build"
+  | "Utility & Convenience"
+  | "Terrain Adaptability"
+  | "Price";

@@ -4,14 +4,21 @@ import Image from "next/image";
 
 export default function AboutRadkaatMobileFlag() {
   return (
-    <div className="absolute inset-0 flag-mobile-img overflow-hidden h-[65%]">
+    <div className="h-[65%] absolute inset-0 flag-img overflow-hidden">
       <Image
         src="/videos/flag1.gif"
-        alt="Radkaat Flag"
+        alt="Waving Indian Flag"
         fill
         priority
         quality={100}
-        className="object-cover object-[70%_center] scale-[1.05] brightness-[0.9]"
+        className="
+      object-cover
+      object-[70%_center] 
+      brightness-[0.9]
+      contrast-[1.05]
+      scale-[1.05]
+      transition-transform duration-700 ease-out
+    "
       />
     </div>
   );

@@ -31,7 +31,7 @@ export const ComparisonTableDesktop = ({
         {/* TABLE */}
         <Table className="w-full border-collapse">
           <TableHeader>
-            <TableRow className="border-b border-white/30">
+            <TableRow className="border-b border-white/30 bg-transparent hover:bg-transparent">
               {/* empty cell on left */}
               <TableHead className="py-10 text-left">&nbsp;</TableHead>
 

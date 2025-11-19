@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
 
         {/* Main content area */}
-        <main id="__next" className="pt-[72px]">
+        <main id="__next" className="">
           {children}
         </main>
 

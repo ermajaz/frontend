@@ -1,26 +1,31 @@
 export const BikeComparisonData = {
     profiles: [
         {
+            id: 0,
             title: "The City Commuter",
             level: "Beginner",
             description: "Rides mainly for daily commuting; prefers comfort, mileage, and low maintenance.",
         },
         {
+            id: 1,
             title: "The Weekend Explorer",
             level: "Intermediate",
             description: "Loves short trail rides off-road; wants balance between comfort & adventure.",
         },
         {
+            id: 2,
             title: "The Fitness Enthusiast",
             level: "Beginner",
             description: "Uses the bike for workouts or fitness goals; prfers lightweight frames & good gearing.",
         },
         {
+            id: 3,
             title: "The Adventure Rider",
             level: "Advanced",
             description: "Rides long distances, uneven terrains; wants premium components & strong suspension.",
         },
         {
+            id: 4,
             title: "The Student Rider",
             level: "Beginner",
             description: "Budget-focused, simple design, prefers reliability and light build.",

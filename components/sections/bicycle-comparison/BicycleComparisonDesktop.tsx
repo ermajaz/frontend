@@ -48,7 +48,7 @@ export default function BicycleComparisonDesktop() {
           }}
         />
 
-        <div className="mt-16 flex justify-center">
+        <div className="mt-0 flex justify-center">
           <RadarChartDesktop selectedBikes={selectedBikes} data={BikeComparisonData} />
         </div>
       </div>

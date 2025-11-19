@@ -43,10 +43,16 @@ export default function AboutRadkaatMobile() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full min-h-[75vh] max-h-[80vh] bg-[#090909] overflow-hidden flex flex-col justify-end"
-    >
+     <section
+            ref={sectionRef}
+            className="
+        relative w-full min-h-[75vh] max-h-[80vh] 
+        flex flex-col justify-end overflow-hidden
+        bg-[#090909]
+        border-t border-[#E4D27C]/10
+        shadow-[0_-3px_25px_rgba(0,0,0,0.5)]
+      "
+        >
       <AboutRadkaatMobileFlag/>
       <AboutMobileContent />
     </section>

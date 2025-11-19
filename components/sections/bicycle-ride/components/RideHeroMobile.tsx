@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import RideStepsMobile from "./RideStepsMobile";
 
 export default function RideHeroMobile() {
   const router = useRouter();
@@ -37,6 +38,7 @@ export default function RideHeroMobile() {
           Start Riding <MoveRight size={18} />
         </Button>
       </div>
+      <RideStepsMobile />
     </div>
   );
 }
