@@ -1,14 +1,13 @@
-// src/app/auth/signup/page.tsx
 "use client";
-// import SignUpForm from "@/features/auth/components/SignUpForm";
+import { SignupForm } from "@/features/auth/components/SignupForm";
+import React from "react";
 
 export default function SignUpPage() {
   return (
-    <div className="container mx-auto py-16">
-      <div className="max-w-md mx-auto bg-superblack/60 p-6 rounded-lg border border-white/10">
-        <h1 className="text-2xl font-semibold mb-4">Create Account</h1>
-        {/* <SignUpForm /> */}
+    <main className="max-h-[600px] flex items-center justify-center">
+      <div className="w-full">
+        <SignupForm />
       </div>
-    </div>
+    </main>
   );
 }
