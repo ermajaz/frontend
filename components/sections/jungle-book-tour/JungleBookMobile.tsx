@@ -35,7 +35,7 @@ export default function JungleBookMobile() {
   return (
     <section className="relative w-full bg-linear-to-b from-[#001644] to-black pb-10">
       <div ref={scrollRef} className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-4 px-3">
-        <StoryScroller destinations={destinations} activeIndex={activeIndex} mobile />
+        <StoryScroller destinations={destinations} activeIndex={activeIndex} />
       </div>
 
       <JungleBookNavMobile

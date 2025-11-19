@@ -1,7 +1,7 @@
 "use client";
 
 import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import MapContainer from "./MapContainer";
 import CardImage from "./CardImage";
 
@@ -16,12 +16,18 @@ export default function StoryCardDesktop({ destination, isActive }: any) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => window.open(destination.link, "_blank")}
-      className={`relative w-full mx-auto h-[500px] cursor-pointer flex overflow-hidden rounded-xl shadow-2xl group transition-all duration-500 
+      className={`relative w-full mx-auto h-[560px] cursor-pointer flex overflow-hidden shadow-2xl group transition-all duration-500 
                 border ${isActive ? "bg-[#111] border-white/30" : "bg-black/20 border-white/10"}`}
     >
-      <div className="flex-1 relative"><CardImage destination={destination} hovered={hovered} /></div>
+      {/* CardImage → 70% width */}
+      <div className="relative w-[70%] h-full">
+        <CardImage destination={destination} hovered={hovered} />
+      </div>
 
-      <div className="flex-1 relative"><MapContainer destination={destination} isInView={isInView} /></div>
+      {/* MapContainer → 30% width */}
+      <div className="relative w-[30%] h-full">
+        <MapContainer destination={destination} isInView={isInView} />
+      </div>
     </div>
   );
 }

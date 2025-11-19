@@ -33,7 +33,7 @@ export default function JungleBookDesktop() {
   };
 
   return (
-    <section className="relative w-full bg-linear-to-b from-[#001644] to-black pb-16">
+    <section className="relative w-full bg-linear-to-b from-[#001644] to-black">
       <div ref={scrollRef} className="flex overflow-x-auto hide-scrollbar gap-6 snap-x snap-mandatory scroll-smooth">
         <StoryScroller destinations={destinations} activeIndex={activeIndex} />
       </div>

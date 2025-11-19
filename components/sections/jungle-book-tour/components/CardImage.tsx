@@ -1,85 +1,96 @@
+"use client";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
 import { Destination } from "@/types/destination";
+import {
+  Mountain,
+  Ruler,
+  Bike,
+  MapPin,
+  UtensilsCrossed,
+  BadgeCheck,
+  Car
+} from "lucide-react";
 
-const renderStars = (rating: number) => (
-    <div className="flex items-center gap-1">
-        {Array?.from({ length: rating }).map((_, i) => (
-            <Star
-                key={i}
-                className="w-3.5 h-3.5 fill-orange-300 text-orange-300"
-                strokeWidth={0}
-            />
-        ))}
+export default function CardImage({
+  destination,
+  hovered,
+}: {
+  destination: Destination;
+  hovered: boolean;
+}) {
+  // Fallback static content (when data missing)
+  const title = destination?.title?.trim()?.split(/\s+/)[0] || "MANALI";
+  const subtitle =
+    destination?.subtitle ||
+    "Remarkable experience to inspire the mind";
+
+  const description =
+    destination?.description ||
+    `Glacial Lakes ; High Passes ; Snowy Peaks ; Green Rivers ; Vast Plains ; Temperate Forests ; 
+Cold Deserts ; a culture preserved for centuries!. 
+This is the heart of the Himalaya! Manali–Leh is a highly popular cycling jaunt, frequented by cyclists 
+from across the world, but accessible only for few months in a year.`;
+
+  const rightPanelDetails = [
+    { icon: Bike, text: "8 Days Adventure" },
+    { icon: Mountain, text: "Altitude: 6,700 ft" },
+    { icon: Ruler, text: "Total Distance: ~120 km" },
+    { icon: MapPin, text: "Stay: 3-star lodge + 2 nights camping" },
+    { icon: UtensilsCrossed, text: "Meals: Breakfast & Dinner included" },
+    { icon: BadgeCheck, text: "Difficulty: Moderate" },
+    { icon: Car, text: "Support Vehicle: Included" },
+  ];
+
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Background Image */}
+      <Image
+        src={destination.leftImage}
+        alt={title}
+        fill
+        priority
+        quality={100}
+        className={`object-cover transition-all duration-700`}
+      />
+
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={hovered ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="absolute right-5 bottom-5 w-[360px] 
+                   bg-black/40 backdrop-blur-md border border-white/10 
+                   p-5 rounded-lg shadow-2xl"
+      >
+        {/* Title */}
+        <h1 className="text-5xl text-center font-extrabold tracking-wide text-white mb-2">
+          {title}
+        </h1>
+
+        {/* Subtitle */}
+        <p className="italic text-[15px] text-sandstorm leading-snug mb-2">
+          “{subtitle}”
+        </p>
+
+        {/* Description */}
+        <p className="text-sm text-gray-200 leading-relaxed mb-2 whitespace-pre-line">
+          {description}
+        </p>
+
+        {/* Bullet Points */}
+        <ul className="space-y-1.5">
+          {rightPanelDetails.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <li key={i} className="flex items-start gap-3 text-gray-200">
+                <Icon size={16} className="text-sandstorm mt-0.5" />
+                <span className="text-sm">{item.text}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </motion.div>
     </div>
-);
-
-function CardImage({ destination, hovered }: { destination: Destination, hovered: boolean }) {
-    return (
-        <div className="w-full h-full overflow-hidden">
-            <Image
-                src={destination.leftImage}
-                alt={destination.title}
-                fill
-                quality={100}
-                className={`object-cover transition-all duration-700 ${hovered ? "scale-105 brightness-[0.55]" : "brightness-[0.7]"}`}
-            />
-
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-transparent flex flex-col justify-end p-6">
-                <h4 className="text-3xl font-extrabold text-white drop-shadow-lg">
-                    {destination.title}
-                </h4>
-                <p className="italic text-green-400 mt-1 text-sm">
-                    “{destination.subtitle}”
-                </p>
-                <p className="mt-2 text-gray-200 leading-relaxed text-xs md:text-sm line-clamp-3">
-                    {destination.description}
-                </p>
-
-                {/* ⭐ Ratings */}
-                <div className="w-full mt-3 space-y-2">
-                    {destination.reviews.slice(0, 3).map((review, idx) => (
-                        <div key={idx} className="space-y-0.5">
-                            <div className="flex items-center justify-between">
-                                <p className="text-xs font-semibold text-white">
-                                    {review.category}
-                                </p>
-                                {renderStars(review.rating)}
-                            </div>
-                            <div className="h-1 bg-gray-700 rounded-full overflow-hidden">
-                                <div
-                                    className="h-full bg-green-600 rounded-full"
-                                    style={{
-                                        width: `${(review.rating / review.max) * 100}%`,
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* ✨ View Story Button */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.4 }}
-                className="absolute bottom-6 right-6"
-            >
-                <Button
-                    className="px-4 py-2 text-sm font-semibold rounded-none text-white border border-white/50 cursor-pointer bg-black/50 backdrop-blur-sm hover:bg-black/70 hover:scale-105 transition-all duration-300"
-                    onClick={() =>
-                        window.open(`${destination?.link}`, "_blank")
-                    }
-                >
-                    View Story
-                </Button>
-            </motion.div>
-        </div>
-    )
-};
-
-export default CardImage;
+  );
+}

@@ -16,8 +16,6 @@ export const RadarChartDesktop = ({
   selectedBikes: string[];
   data: any;
 }) => {
-  console.log("selectedBikes:->", selectedBikes);
-  console.log("data:->", data);
 
   /** UI → RADAR KEY */
   const radarKeyMap: Record<string, string> = {
