@@ -13,9 +13,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   useEffect(() => {
     // SIMPLE auth check (replace with your auth logic)
     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-    if (!token) {
-      router.push("/auth/signin");
-    }
+    // if (!token) {
+    //   router.push("/signin");
+    // }
   }, [router]);
 
   return (
