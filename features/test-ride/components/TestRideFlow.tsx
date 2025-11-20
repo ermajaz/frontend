@@ -51,7 +51,7 @@ export default function TestRideFlow() {
   return (
     <div
       ref={containerRef}
-      className="relative w-screen h-screen flex bg-linear-to-br from-black via-zinc-900 to-black text-white overflow-hidden"
+      className="relative w-full h-screen flex bg-linear-to-br from-black via-zinc-900 to-black text-white overflow-hidden"
     >
       {/* Animated background gradient blob */}
       <motion.div
