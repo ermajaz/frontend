@@ -39,7 +39,7 @@ export default function RideHeroDesktop() {
 
         <Button
           className="bg-sandstorm whitespace-nowrap rounded-none h-14 cursor-pointer px-5 gap-2 text-superblack font-semibold uppercase text-[18px]"
-          onClick={() => router.push("/experience")}
+          onClick={() => router.push("/test-ride")}
         >
           Live the Experience <MoveRight />
         </Button>

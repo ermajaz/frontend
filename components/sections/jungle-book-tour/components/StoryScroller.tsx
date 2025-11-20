@@ -16,7 +16,9 @@ export default function StoryScroller({
   return (
     <>
       {destinations.map((item, index) => (
-        <div key={item.id} className="snap-start shrink-0 w-full flex justify-center">
+        <div key={item.id} onClick={() =>
+          window.open(`${item?.link}`, "_blank")
+        } className="snap-start shrink-0 w-full flex justify-center">
           {isMobile ? (
             <StoryCardMobile destination={item} isActive={activeIndex === index} />
           ) : (
