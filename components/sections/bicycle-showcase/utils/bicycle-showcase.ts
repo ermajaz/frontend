@@ -211,17 +211,17 @@ export const variants = [
   {
     model: "Model-1",
     colors: ["#6F7B12", "#D7CB8B", "#A84545"],
-    productLink: "/products/serow/model-1",
+    productLink: "/bikes/serow/model-1",
   },
   {
     model: "Model-2",
     colors: ["#556B2F", "#C9C18C", "#9B3E3E"],
-    productLink: "/products/serow/model-2",
+    productLink: "/bikes/serow/model-2",
   },
   {
     model: "Model-3",
     colors: ["#4D5C1D", "#DAC888", "#8E2F2F"],
-    productLink: "/products/serow/model-3",
+    productLink: "/bikes/serow/model-3",
   },
 ];
 
