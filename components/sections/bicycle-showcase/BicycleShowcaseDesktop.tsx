@@ -51,7 +51,7 @@ export default function BikeShowcaseDesktop() {
         <div className="flex-1 px-10 overflow-hidden">
           <div className="grid grid-cols-18 gap-6 h-full items-start">
             {/* Left spec tabs */}
-            <div className="col-span-2 overflow-y-auto  pt-4 pr-2">
+            <div className="col-span-2 overflow-y-auto  pt-16 pr-10">
               <SpecTabs
                 specs={bike.specs}
                 activeSpecKey={activeSpecKey}
@@ -66,7 +66,7 @@ export default function BikeShowcaseDesktop() {
             </div>
 
             {/* Buttons right */}
-            <div className="col-span-2 flex items-start justify-end pt-4">
+            <div className="col-span-2 flex items-start justify-end pt-16">
               <RightButtonGroup
                 open360={() => setShow360(true)}
                 openTech={() => setShowTech(true)}

@@ -24,21 +24,21 @@ export const MODELS = {
 export const MODEL_DETAILS = {
   serow: {
     models: ["Model-1", "Model-2", "Model-3"],
-    image: "/images/dummy-cycle.png",
+    image: "/images/product-overlay-img.png",
     title: "SEROW-1",
     price: "₹10,000",
     colors: ["#4B5F00", "#D0C67A", "#A33A3A"]
   },
   saola: {
     models: ["Model-1"],
-    image: "/images/dummy-cycle.png",
+    image: "/images/product-overlay-img.png",
     title: "SAOLA-1",
     price: "₹8,000",
     colors: ["#D0C67A", "#A33A3A"]
   },
   takin: {
     models: ["Model-1"],
-    image: "/images/dummy-cycle.png",
+    image: "/images/product-overlay-img.png",
     title: "TAKIN-1",
     price: "₹12,000",
     colors: ["#4B5F00"]

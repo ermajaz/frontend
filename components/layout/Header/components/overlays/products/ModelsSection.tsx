@@ -20,12 +20,12 @@ export default function ModelsSection({
         <p
           key={m.id}
           onClick={() => setActiveModel(m.id)}
-          className={`cursor-pointer flex justify-between items-center py-1 text-lg tracking-wide 
+          className={`cursor-pointer flex justify-between items-center py-1 text-base tracking-wide 
             ${activeModel === m.id ? "text-white font-bold" : "text-white/60 hover:text-white"}
           `}
         >
           {m.label}
-          <span>›</span>
+          <span className="text-2xl">›</span>
         </p>
       ))}
     </NavGroup>

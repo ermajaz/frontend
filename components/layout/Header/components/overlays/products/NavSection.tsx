@@ -18,12 +18,12 @@ export default function NavSection({
         <p
           key={p.id}
           onClick={() => setActiveProduct(p.id as ProductKey)}
-          className={`cursor-pointer flex justify-between items-center py-1 text-lg tracking-wide 
+          className={`cursor-pointer flex justify-between items-center py-1 text-base tracking-wide 
             ${activeProduct === p.id ? "text-white font-bold" : "text-white/60 hover:text-white"}
           `}
         >
           {p.label}
-          <span>›</span>
+          <span className="text-2xl">›</span>
         </p>
       ))}
     </NavGroup>

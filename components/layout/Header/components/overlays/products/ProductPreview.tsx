@@ -29,7 +29,7 @@ export default function ProductPreview({
         details.models ??
         ["Model-1", "Model-2", "Model-3"];
 
-    const baseImage = (details as any).image || "/images/dummy-cycle.png";
+    const baseImage = (details as any).image || "/images/product-overlay-img.png";
     const baseTitle = (details as any).title || "SEROW-1";
     const basePrice = (details as any).price || "₹10,000";
     const baseColors: string[] = (details as any).colors || ["#8EA23A", "#D9C98A", "#8B2B2B"];
@@ -37,24 +37,24 @@ export default function ProductPreview({
     const [activeModelIndex, setActiveModelIndex] = useState(0);
 
     return (
-        <div className="w-full h-full max-w-[980px] relative flex flex-col justify-between items-stretch">
+        <div className="w-full h-full relative flex flex-col justify-between items-stretch">
             {/* Top model tabs over the image area */}
             <div className="absolute top-6 left-8 right-8 z-30 pointer-events-none">
-                <div className="w-fit flex items-center border-b border-white/10 justify-start gap-6 pointer-events-auto">
+                <div className="w-fit flex items-center border-b-2 border-white/30 justify-start gap-6 pointer-events-auto">
                     {modelLabels.map((m, idx) => {
                         const active = idx === activeModelIndex;
                         return (
                             <button
                                 key={m}
                                 onClick={() => setActiveModelIndex(idx)}
-                                className={`relative text-white/90 cursor-pointer text-xl font-semibold tracking-wide px-1  ${active ? "text-white" : "text-white/45"
+                                className={`relative cursor-pointer text-2xl font-semibold tracking-wide px-1  ${active ? "text-white" : "text-white/30"
                                     }`}
                                 aria-current={active ? "true" : "false"}
                             >
                                 {m}
                                 {/* underline whose width is equal to the word */}
                                 <span
-                                    className={`block h-0.5 mt-3 ${active ? "bg-white w-full" : "bg-white/10 w-0"
+                                    className={`block h-0.5 mt-1 ${active ? "bg-white w-full" : "bg-white/30 w-0"
                                         }`}
                                     style={{ transformOrigin: "left" }}
                                 />
@@ -65,13 +65,13 @@ export default function ProductPreview({
             </div>
 
             {/* Big image container */}
-            <div className="w-full h-[560px] bg-[#0b0b0b] rounded-md overflow-hidden relative flex items-center justify-center">
+            <div className="w-full h-full bg-[#0b0b0b] overflow-hidden relative flex items-center justify-center">
                 <Image
                     src={baseImage}
                     alt={baseTitle}
                     fill
                     priority
-                    className="object-contain"
+                    className="object-cover"
                 />
             </div>
 
@@ -80,13 +80,13 @@ export default function ProductPreview({
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45 }}
-                className="mb-5 w-[95%] mx-auto bg-[#0b0b0b] border border-white/6 rounded-sm p-4 flex items-center justify-between"
+                className="absolute bottom-5 left-[2.5%] w-[95%] mx-auto bg-[#1A1A1A]/80 border border-white/6 rounded-sm p-4 flex items-center justify-between"
             >
                 {/* Left: model selection compact (Model-1 Model-2 Model-3) */}
                 <div className="flex items-center gap-6">
                     <div className="text-left mr-2">
-                        <div className="text-sm text-white/80">{baseTitle}</div>
-                        <div className="text-xs text-white/60">From: {basePrice}</div>
+                        <div className="text-lg font-bold text-white/80">{baseTitle}</div>
+                        <div className="text-base text-white/60">From: {basePrice}</div>
                     </div>
                 </div>
 
@@ -104,14 +104,14 @@ export default function ProductPreview({
                                     {active && (
                                         <span className="absolute inset-0 rounded-full border-2 border-white" />
                                     )}
-                                    <span className="w-6 h-6 rounded-full" style={{ backgroundColor: c }} />
+                                    <span className="w-5 h-5 rounded-full" style={{ backgroundColor: c }} />
                                 </button>
                             );
                         })}
                     </div>
                     <Link
                         href="#"
-                        className="bg-white text-black px-4 py-2 rounded-sm cursor-pointer font-medium"
+                        className="bg-white text-black text-xs px-8 py-2 rounded-xs cursor-pointer font-medium"
                     >
                         View Product
                     </Link>

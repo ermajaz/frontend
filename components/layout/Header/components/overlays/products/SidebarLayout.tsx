@@ -9,7 +9,7 @@ export default function SidebarLayout({
 }) {
   return (
     <div
-      className="w-[500px] h-full bg-[#111] p-6 text-white flex justify-between gap-10"
+      className="w-[450px] h-full p-6 text-white flex justify-between gap-12"
       onClick={onClickInside}
     >
 

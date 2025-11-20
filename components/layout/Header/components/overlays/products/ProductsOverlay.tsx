@@ -46,7 +46,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
             onClick={onClose}
         >
             {/* HEADER */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
+            <div className="flex h-[90px] items-center bg-[#121212] justify-between px-10 shrink-0">
 
                 {/* LEFT — BIG CLOSE BUTTON */}
                 <button
@@ -78,7 +78,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
             <div className="flex flex-row w-full h-full overflow-hidden" onClick={(e) => e.stopPropagation()}>
 
                 {/* LEFT SIDEBAR */}
-                <div className="w-[480px] shrink-0 bg-[#111] border-r border-white/10 px-6 py-10 flex gap-12">
+                <div className="w-[450px] shrink-0 bg-[#121212] px-6 py-10 flex gap-12">
                     <SidebarLayout onClickInside={(e) => e.stopPropagation()}>
 
                         <NavSection

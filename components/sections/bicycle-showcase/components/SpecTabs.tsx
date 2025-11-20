@@ -19,11 +19,8 @@ export default function SpecTabs({
             <li key={s.key} className="relative pl-3">
               <button
                 onClick={() => setActiveSpecKey(s.key)}
-                className={`relative cursor-pointer inline-block text-left py-1 transition-all ${
-                  active
-                    ? "text-sandstorm"
-                    : "text-white/60 hover:text-white"
-                }`}
+                className={`relative cursor-pointer text-sm inline-block text-left py-1 transition-all text-white
+                  `}
               >
                 {s.label}
 

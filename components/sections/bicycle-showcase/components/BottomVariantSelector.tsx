@@ -25,7 +25,8 @@ export default function BottomVariantSelector({
     const currentVariant = variants.find((v) => v.model === activeModel)!;
 
     return (
-        <div className="w-full m-auto max-w-7xl bg-[#1A1A1A]/80 mb-5 border border-white/10 rounded-lg p-4 backdrop-blur-md">
+        <div className="absolute bottom-5 left-0 right-0 max-w-7xl mx-auto bg-[#1A1A1A]/80 border border-white/6 rounded-sm p-4 flex items-center justify-between">
+
             <div className="w-full mx-auto flex items-center justify-between">
                 {/* ------------------- MODEL SWITCH TABS ------------------- */}
                 <div className="flex items-center gap-6">
@@ -73,7 +74,7 @@ export default function BottomVariantSelector({
                     <a
                         href={currentVariant.productLink}
                         target="_blank"
-                        className="px-6 py-2 bg-white rounded-sm text-black text-sm font-semibold hover:bg-white/90 transition"
+                        className="px-6 py-2 bg-white rounded-xs text-black text-xs font-semibold hover:bg-white/90 transition"
                     >
                         View Product
                     </a>
