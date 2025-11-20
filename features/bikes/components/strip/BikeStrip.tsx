@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { TableBikeName, TableModelName } from "../geometry/utils/geometry.types";
 
 interface BikeStripProps {
   name: string;
   model: string;
   onBuy?: () => void;
   onBookTestRide?: () => void;
+  selectedBike: TableBikeName;
+  selectedModel:TableModelName;
 }
 
 const navItems = [
@@ -23,6 +26,8 @@ export default function BikeStrip({
   model,
   onBuy,
   onBookTestRide,
+  selectedBike,
+  selectedModel
 }: BikeStripProps) {
   const [active, setActive] = useState("overview");
 
@@ -58,8 +63,8 @@ export default function BikeStrip({
       <div className="flex items-center space-x-10">
         {/* Left: Name & Model */}
         <div className="flex items-center gap-2">
-          <span className="text-[20px] font-bold text-black">
-            {name} - {model}
+          <span className="text-[20px] font-bold text-black uppercase">
+            {selectedBike} - {selectedModel}
           </span>
         </div>
 

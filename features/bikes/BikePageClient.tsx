@@ -55,8 +55,8 @@ export default function BikesPageClient({
       ============================== */}
       <section id="overview">
         <BikeHero
-          branding="TAKIN"
-          model="M10"
+          branding={bikeName}
+          model={modelName}
           variants={[
             { name: "M10", front: 130, rear: 120, wheel: "30/MX" },
             { name: "M12", front: 150, rear: 140, wheel: "29/MX" },
@@ -77,12 +77,16 @@ export default function BikesPageClient({
           model="M10"
           onBuy={handleBuy}
           onBookTestRide={handleBookTestRide}
+          selectedBike={bikeName}
+          selectedModel={modelName}
         />,
         <BikeStrip
           name="TAKIN"
           model="M10"
           onBuy={handleBuy}
           onBookTestRide={handleBookTestRide}
+          selectedBike={bikeName}
+          selectedModel={modelName}
         />
       )}
 
@@ -115,9 +119,9 @@ export default function BikesPageClient({
       <section id="geometry">
         {render(
           <SpecsCompareSectionMobile />,
-          <SpecsCompareSection 
-            selectedBike={bikeName} 
-            selectedModel={modelName} 
+          <SpecsCompareSection
+            selectedBike={bikeName}
+            selectedModel={modelName}
           />,
         )}
       </section>

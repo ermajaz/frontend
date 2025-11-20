@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Bike } from "lucide-react";
+import { TableBikeName, TableModelName } from "../geometry/utils/geometry.types";
 
 interface BikeStripMobileProps {
     name: string;
     model: string;
     onBuy?: () => void;
     onBookTestRide?: () => void;
+    selectedBike: TableBikeName;
+    selectedModel: TableModelName;
 }
 
 const navItems = [
@@ -25,6 +28,8 @@ export default function BikeStripMobile({
     model,
     onBuy,
     onBookTestRide,
+    selectedBike,
+    selectedModel
 }: BikeStripMobileProps) {
     const [active, setActive] = useState("overview");
     const [hovered, setHovered] = useState<string | null>(null);
@@ -76,12 +81,12 @@ export default function BikeStripMobile({
         >
             {/* Header Info + Buttons */}
             <div className="w-full px-5 py-3 flex items-center justify-between">
-                <div className="flex flex-col">
+                <div className="flex flex-col uppercase">
                     <span className="text-[#E4D27C] text-[13px] font-medium uppercase tracking-wide">
-                        {name}
+                        {selectedBike}
                     </span>
                     <span className="text-white text-[18px] font-bold leading-none">
-                        {model}
+                        {selectedModel}
                     </span>
                 </div>
 
@@ -151,10 +156,10 @@ export default function BikeStripMobile({
                         >
                             <motion.span
                                 className={`transition-all duration-300 ${isActive
-                                        ? "text-[#E4D27C] font-semibold"
-                                        : isHovered
-                                            ? "text-white"
-                                            : "text-gray-400"
+                                    ? "text-[#E4D27C] font-semibold"
+                                    : isHovered
+                                        ? "text-white"
+                                        : "text-gray-400"
                                     }`}
                             >
                                 {item.label}
