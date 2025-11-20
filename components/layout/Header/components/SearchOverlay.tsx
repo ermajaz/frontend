@@ -12,6 +12,7 @@ import ProductsOverlay from "./overlays/products/ProductsOverlay";
 export default function SearchOverlay({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -57,7 +58,10 @@ export default function SearchOverlay({ onClose }: { onClose: () => void }) {
         <Category />
       </div>
 
-      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} />}
+      {productsOpen && <ProductsOverlay
+        onClose={() => setProductsOpen(false)}
+        onSearchOpen={() => setSearchOpen(true)}
+      />}
     </div>
   );
 }
