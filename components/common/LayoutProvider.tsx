@@ -5,33 +5,37 @@ import { usePathname } from "next/navigation";
 import Header from "../layout/Header/Header";
 import Footer from "../layout/Footer/Footer";
 
-/**
- * LayoutProvider conditionally renders Header/Footer based on route.
- * This keeps your RootLayout clean and scalable.
- */
 export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
 
-  // Define routes where Header/Footer should NOT appear
-  const hiddenRoutes = [
+  // routes where BOTH header and footer are hidden
+  const noLayoutRoutes = [
     "/cart",
     "/cart/address",
     "/cart/payment",
     "/experience",
     "/test-ride",
-    "/signin",
-    "/signup",
-    "/reset-password"
   ];
 
-  // Check if current path matches any hidden route
-  const shouldHideLayout = hiddenRoutes.some((path) => pathname.startsWith(path));
+  // routes where ONLY footer is hidden (header visible)
+  const headerOnlyRoutes = [
+    "/signin",
+    "/signup",
+    "/reset-password",
+  ];
+
+  const isNoLayout = noLayoutRoutes.some((path) => pathname.startsWith(path));
+  const isHeaderOnly = headerOnlyRoutes.some((path) => pathname.startsWith(path));
 
   return (
     <>
-      {!shouldHideLayout && <Header/>}
+      {/* Render Header only if not in NO-LAYOUT routes */}
+      {!isNoLayout && <Header />}
+
       {children}
-      {!shouldHideLayout && <Footer />}
+
+      {/* Render Footer only if NOT in: noLayout OR headerOnly routes */}
+      {!isNoLayout && !isHeaderOnly && <Footer />}
     </>
   );
 };

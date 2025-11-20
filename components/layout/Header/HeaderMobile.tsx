@@ -8,14 +8,19 @@ import HeaderIcons from "./components/HeaderIcons";
 import SearchOverlay from "./components/SearchOverlay";
 import UserMenuModal from "./components/UserMenuModal";
 import ProductsOverlay from "./components/overlays/products/ProductsOverlay";
-
 export default function HeaderMobile() {
   const headerRef = useRef<HTMLDivElement>(null);
   const { showHeader } = useHeaderScrollBehavior();
-
+  const [confirmOpen, setConfirmOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+
+  // 🔥 When logout is clicked (from menu)
+  const handleLogoutClick = () => {
+    setUserMenuOpen(false);   // close menu first
+    setConfirmOpen(true);     // show confirm modal
+  };
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -37,13 +42,15 @@ export default function HeaderMobile() {
         <HeaderIcons
           onSearchOpen={() => setSearchOpen(true)}
           onProductsOpen={() => setProductsOpen(true)}
+          userMenuOpen={userMenuOpen}
           onUserMenuOpen={() => setUserMenuOpen(true)}
+          onUserMenuClose={() => setUserMenuOpen(false)}
+          onLogoutClick={handleLogoutClick}
         />
       </header>
 
       {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
-      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} />}
-      <UserMenuModal open={userMenuOpen} onClose={() => setUserMenuOpen(false)} />
+      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} onSearchOpen={() => setSearchOpen(true)} />}
     </>
   );
 }

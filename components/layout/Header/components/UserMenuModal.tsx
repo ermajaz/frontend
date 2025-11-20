@@ -1,35 +1,27 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { LogOut, User, Package, Heart, Bell, LucideIcon } from "lucide-react";
 import gsap from "gsap";
 import { useRouter } from "next/navigation";
-import Image, { StaticImageData } from "next/image";
-import ConfirmDialog from "./ConfirmDialog";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface UserData {
   name?: string;
-  avatar?: string | StaticImageData;
+  avatar?: string;
   email?: string;
 }
 
 interface UserMenuModalProps {
   open: boolean;
   onClose: () => void;
+  onLogoutClick: () => void;  // NEW
   user?: UserData;
 }
 
-export interface MenuItem {
-  label: string;
-  icon: LucideIcon; // Lucide icons share this base type
-  href: string;
-  confirm?: boolean; // optional (e.g., for logout)
-}
-
-// 🧭 More advanced menu items
-const menuItems: MenuItem[] = [
+const menuItems = [
   { label: "Profile", icon: User, href: "/profile" },
   { label: "My Orders", icon: Package, href: "/orders" },
   { label: "Notifications", icon: Bell, href: "/notifications" },
@@ -39,6 +31,7 @@ const menuItems: MenuItem[] = [
 export default function UserMenuModal({
   open,
   onClose,
+  onLogoutClick,
   user = {
     name: "John Doe",
     email: "john.doe@example.com",
@@ -47,18 +40,21 @@ export default function UserMenuModal({
 }: UserMenuModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
 
-  // 🧭 Close when mouse leaves modal area
+  // Close if click outside
   useEffect(() => {
-    const modal = modalRef.current;
-    if (!modal) return;
-    const handleMouseLeave = () => onClose();
-    modal.addEventListener("mouseleave", handleMouseLeave);
-    return () => modal.removeEventListener("mouseleave", handleMouseLeave);
-  }, [onClose]);
+    function handleClickOutside(e: MouseEvent) {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    }
 
-  // 🎞 GSAP entry animation
+    if (open) document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open, onClose]);
+
+  // GSAP animation
   useEffect(() => {
     if (open && modalRef.current) {
       gsap.fromTo(
@@ -69,113 +65,67 @@ export default function UserMenuModal({
     }
   }, [open]);
 
-  const handleMenuClick = (item: MenuItem) => {
+  const handleMenuClick = (item: any) => {
     if (item.confirm) {
-      setConfirmOpen(true);
-    } else {
-      router.push(item.href);
-      onClose();
+      onLogoutClick();    // 🔥 call parent to show ConfirmDialog
+      return;
     }
-  };
 
-  const handleConfirmLogout = () => {
-    setConfirmOpen(false);
+    router.push(item.href);
     onClose();
-    router.push("/");
   };
 
   return (
-    <>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            ref={modalRef}
-            initial={{ opacity: 0, y: 10, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className={cn(
-              "absolute top-14 right-0 w-64 p-4 z-200",
-              "border border-white/20 overflow-hidden",
-              "bg-[rgba(15,15,15,0.6)] backdrop-blur-2xl backdrop-brightness-90 backdrop-saturate-150",
-              "shadow-[0_8px_32px_rgba(0,0,0,0.65)] transition-all duration-300"
-            )}
-          >
-            {/* 🧑 User Info Section */}
-            <div className="flex items-center gap-3 mb-4 border-b border-white/10 pb-3 relative">
-              <div className="relative w-10 h-10 shrink-0">
-                <Image
-                  src={user.avatar || "/images/default-avatar.png"}
-                  alt={user.name || "User"}
-                  fill
-                  sizes="40px"
-                  className="object-cover rounded-full border border-white/20"
-                />
-                {/* Small glow */}
-                <div className="absolute inset-0 rounded-full bg-white/10 blur-sm opacity-60" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-white font-semibold leading-tight text-[15px]">
-                  {user.name}
-                </span>
-                <span className="text-white/60 text-xs">{user.email}</span>
-              </div>
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          ref={modalRef}
+          initial={{ opacity: 0, y: 10, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className={cn(
+            "absolute top-14 right-0 w-64 p-4 z-200",
+            "bg-[rgba(15,15,15,0.6)] border border-white/20",
+            "backdrop-blur-2xl shadow-lg rounded-md"
+          )}
+        >
+          {/* User info */}
+          <div className="flex items-center gap-3 mb-4 border-b border-white/10 pb-3">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden">
+              <Image
+                src={user.avatar || "/images/default-avatar.png"}
+                alt={user.name || "User"}
+                fill
+                sizes="40px"
+                className="object-cover rounded-full border border-white/20"
+              />
             </div>
 
-            {/* 🌈 Menu List */}
-            <div className="flex flex-col gap-1">
-              {menuItems.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <motion.button
-                    key={idx}
-                    onClick={() => handleMenuClick(item)}
-                    whileHover={{
-                      x: 0,
-                      scale: 1.03,
-                      backgroundColor: "rgba(255,255,255,0.08)",
-                    }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ type: "spring", stiffness: 240, damping: 18 }}
-                    className={cn(
-                      "flex items-center cursor-pointer gap-3 px-3 py-2.5 text-sm text-white/90 transition-all relative",
-                      "hover:text-white hover:shadow-[0_0_3px_rgba(255,255,255,0.2)]"
-                    )}
-                  >
-                    {/* Icon with motion pulse */}
-                    <motion.div
-                      className="flex items-center justify-center"
-                      whileHover={{ rotate: 8, scale: 1.1 }}
-                      transition={{ duration: 0.25 }}
-                    >
-                      <Icon size={18} className="opacity-80" />
-                    </motion.div>
-                    <span className="font-medium">{item.label}</span>
-                  </motion.button>
-                );
-              })}
+            <div>
+              <p className="text-white font-semibold">{user.name}</p>
+              <p className="text-white/60 text-xs">{user.email}</p>
             </div>
+          </div>
 
-            {/* 💫 Subtle decorative blur glow */}
-            <motion.div
-              className="absolute inset-0 -z-10 rounded-2xl bg-linear-to-br from-white/10 via-transparent to-transparent blur-2xl"
-              animate={{ opacity: [0.2, 0.35, 0.2] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* 🧊 Logout Confirmation Dialog */}
-      <ConfirmDialog
-        open={confirmOpen}
-        title="Confirm Logout"
-        description="Are you sure you want to log out of your account?"
-        confirmLabel="Logout"
-        cancelLabel="Cancel"
-        onConfirm={handleConfirmLogout}
-        onCancel={() => setConfirmOpen(false)}
-      />
-    </>
+          {/* Menu items */}
+          <div className="flex flex-col gap-1">
+            {menuItems.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => handleMenuClick(item)}
+                  className="flex items-center gap-3 cursor-pointer px-3 py-2 text-white/80 hover:bg-white/10 rounded"
+                >
+                  <Icon size={18} />
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
