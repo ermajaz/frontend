@@ -39,7 +39,7 @@ export default function BottomVariantSelector({
                                 className={`text-lg cursor-pointer font-medium transition-all ${active ? "text-white" : "text-white/50 hover:text-white/70"
                                     }`}
                             >
-                                {v.model}
+                                {v.model.toUpperCase()}
                             </button>
                         );
                     })}

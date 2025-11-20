@@ -18,7 +18,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
     const [productsOpen, setProductsOpen] = useState(false);
     const [activeProduct, setActiveProduct] = useState<ProductKey>("bikes");
     const [activeModelClass, setActiveModelClass] = useState<ModelClassKey>("serow");
-    const [activeVariant, setActiveVariant] = useState("Model-1");
+    const [activeVariant, setActiveVariant] = useState("model-1");
 
     useEffect(() => {
         if (!overlayRef.current) return;
@@ -94,7 +94,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
                                     setActiveModelClass("serow");
                                 }
 
-                                setActiveVariant("Model-1");
+                                setActiveVariant("model-1");
                             }}
                         />
 
@@ -104,7 +104,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
                             activeModel={activeModelClass}
                             setActiveModel={(m: ModelClassKey) => {
                                 setActiveModelClass(m);
-                                setActiveVariant("Model-1");
+                                setActiveVariant("model-1");
                             }}
                         />
                     </SidebarLayout>

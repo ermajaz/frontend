@@ -4,8 +4,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import SpecsTable from "./SpecsTable";
 import CompareTable from "./CompareTable";
+import { TableBikeName, TableModelName } from "./utils/geometry.types";
 
-export default function SpecsCompareSection() {
+export default function SpecsCompareSection({
+  selectedBike,
+  selectedModel,
+}: {
+  selectedBike: TableBikeName;
+  selectedModel: TableModelName;
+}) {
   const [activeTab, setActiveTab] = useState<"specs" | "compare">("specs");
 
   return (
@@ -42,7 +49,7 @@ export default function SpecsCompareSection() {
       </div>
 
       {/* Content */}
-      {activeTab === "specs" ? <SpecsTable /> : <CompareTable />}
+      {activeTab === "specs" ? <SpecsTable selectedBike={selectedBike} selectedModel={selectedModel} /> : <CompareTable selectedBike={selectedBike} selectedModel={selectedModel} />}
     </section>
   );
 }

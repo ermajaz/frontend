@@ -30,14 +30,14 @@ export const MODEL_DETAILS = {
     colors: ["#4B5F00", "#D0C67A", "#A33A3A"]
   },
   saola: {
-    models: ["Model-1"],
+    models: ["model-1"],
     image: "/images/product-overlay-img.png",
     title: "SAOLA-1",
     price: "₹8,000",
     colors: ["#D0C67A", "#A33A3A"]
   },
   takin: {
-    models: ["Model-1"],
+    models: ["model-1"],
     image: "/images/product-overlay-img.png",
     title: "TAKIN-1",
     price: "₹12,000",

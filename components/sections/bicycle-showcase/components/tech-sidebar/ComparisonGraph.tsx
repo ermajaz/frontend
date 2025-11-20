@@ -50,7 +50,7 @@ export default function ComparisonGraph() {
               stroke="#91c842"
               strokeWidth={2}
               dot={{ r: 4 }}
-              name="Model-1"
+              name="model-1"
             />
 
             <Line
@@ -59,7 +59,7 @@ export default function ComparisonGraph() {
               stroke="#c9ba6b"
               strokeWidth={2}
               dot={{ r: 4 }}
-              name="Model-2"
+              name="model-2"
             />
 
             <Line
@@ -68,7 +68,7 @@ export default function ComparisonGraph() {
               stroke="#c75a5a"
               strokeWidth={2}
               dot={{ r: 4 }}
-              name="Model-3"
+              name="model-3"
             />
           </LineChart>
         </ResponsiveContainer>

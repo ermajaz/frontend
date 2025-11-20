@@ -10,21 +10,41 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { bikeSpecs } from "./utils/geometry-data";
+import { BikeName, GeoModelName, TableBikeName, TableModelName } from "./utils/geometry.types";
 
-export default function SpecsTable() {
-  const specs = [
-    { label: "WHEEL SIZE", values: ["29", "29", "29", "29"] },
-    { label: "REACH (mm)", values: ["430", "455", "475", "495"] },
-    { label: "STACK (mm)", values: ["605", "615", "625", "640"] },
-    { label: "CHAIN STAY LENGTH (mm)", values: ["440", "440", "440", "440"] },
-    { label: "SEAT ANGLE", values: ["74°", "74°", "74°", "74°"] },
-    { label: "HEAD ANGLE", values: ["67°", "67°", "67°", "67°"] },
-  ];
+
+export default function SpecsTable({
+  selectedBike,
+  selectedModel,
+}: {
+  selectedBike: TableBikeName;
+    selectedModel: TableModelName;
+}) {
+
+  // Convert to lowercase so it matches your object keys
+const rawBikeKey = selectedBike.toLowerCase();
+const rawModelKey = selectedModel.toLowerCase();
+
+// Runtime validation + TS narrowing
+if (!["serow", "saola", "takin"].includes(rawBikeKey)) {
+  console.error("Invalid bike:", selectedBike);
+  return null;
+}
+
+const bikeKey = rawBikeKey as BikeName;
+const modelKey = rawModelKey as GeoModelName;
+
+// Fully typed, no TS errors
+const currentSpecs = bikeSpecs[bikeKey][modelKey];
 
   return (
     <section className="relative w-full text-stone-100 py-10 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-16 md:gap-20">
-        {/* Left - Geometry Frame Image */}
+        
+        {/* =====================================
+                 Left — Geometry Image
+        ====================================== */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -42,7 +62,9 @@ export default function SpecsTable() {
           </div>
         </motion.div>
 
-        {/* Right - Table Section */}
+        {/* =====================================
+                 Right — Geometry Table
+        ====================================== */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -55,6 +77,7 @@ export default function SpecsTable() {
                 <TableHead className="text-left text-sm font-light uppercase tracking-widest text-gray-400">
                   &nbsp;
                 </TableHead>
+
                 {["SM", "MD", "LG", "XL"].map((size) => (
                   <TableHead
                     key={size}
@@ -67,7 +90,7 @@ export default function SpecsTable() {
             </TableHeader>
 
             <TableBody>
-              {specs.map((spec, i) => (
+              {currentSpecs.map((spec, i) => (
                 <motion.tr
                   key={spec.label}
                   initial={{ opacity: 0, y: 15 }}
@@ -75,9 +98,12 @@ export default function SpecsTable() {
                   transition={{ delay: 0.08 * i }}
                   className="border-b border-[#1F1F1F] hover:bg-[#161616] transition-colors duration-300"
                 >
+                  {/* Label */}
                   <TableCell className="py-6 font-semibold tracking-wide text-gray-200">
                     {spec.label}
                   </TableCell>
+
+                  {/* Values for SM / MD / LG / XL */}
                   {spec.values.map((val, idx) => (
                     <TableCell
                       key={idx}

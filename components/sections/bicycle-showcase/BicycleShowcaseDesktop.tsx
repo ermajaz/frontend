@@ -21,7 +21,7 @@ export default function BikeShowcaseDesktop() {
   const [activeSpecKey, setActiveSpecKey] = useState(BIKES[0].specs[0].key);
   const [show360, setShow360] = useState(false);
   const [showTech, setShowTech] = useState(false);
-  const [activeModel, setActiveModel] = useState("Model-1");
+  const [activeModel, setActiveModel] = useState("model-1");
   const [activeColor, setActiveColor] = useState(variants[0].colors[0]);
 
   const bike = BIKES.find((b) => b.id === activeBikeId)!;

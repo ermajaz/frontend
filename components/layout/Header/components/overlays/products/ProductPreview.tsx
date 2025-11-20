@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 type ModelDetails = {
     id: string;
-    label: string; // "Model-1"
+    label: string; // "model-1"
     image: string;
     title: string; // "SEROW-1"
     price: string; // "₹10,000"
@@ -27,7 +27,7 @@ export default function ProductPreview({
     // otherwise fallback to hardcoded three models
     const modelLabels: string[] =
         details.models ??
-        ["Model-1", "Model-2", "Model-3"];
+        ["model-1", "model-2", "model-3"];
 
     const baseImage = (details as any).image || "/images/product-overlay-img.png";
     const baseTitle = (details as any).title || "SEROW-1";
@@ -82,7 +82,7 @@ export default function ProductPreview({
                 transition={{ duration: 0.45 }}
                 className="absolute bottom-5 left-[2.5%] w-[95%] mx-auto bg-[#1A1A1A]/80 border border-white/6 rounded-sm p-4 flex items-center justify-between"
             >
-                {/* Left: model selection compact (Model-1 Model-2 Model-3) */}
+                {/* Left: model selection compact (model-1 model-2 model-3) */}
                 <div className="flex items-center gap-6">
                     <div className="text-left mr-2">
                         <div className="text-lg font-bold text-white/80">{baseTitle}</div>

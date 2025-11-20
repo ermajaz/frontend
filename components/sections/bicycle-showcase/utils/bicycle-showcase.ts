@@ -209,24 +209,24 @@ export const BIKES: Bike[] = [
 
 export const variants = [
   {
-    model: "Model-1",
+    model: "model-1",
     colors: ["#6F7B12", "#D7CB8B", "#A84545"],
     productLink: "/bikes/serow/model-1",
   },
   {
-    model: "Model-2",
+    model: "model-2",
     colors: ["#556B2F", "#C9C18C", "#9B3E3E"],
     productLink: "/bikes/serow/model-2",
   },
   {
-    model: "Model-3",
+    model: "model-3",
     colors: ["#4D5C1D", "#DAC888", "#8E2F2F"],
     productLink: "/bikes/serow/model-3",
   },
 ];
 
 
-export const SPEC_MODELS = ["Model-1", "Model-2", "Model-3"];
+export const SPEC_MODELS = ["model-1", "model-2", "model-3"];
 
 
 export const SPEC_CATEGORIES = [
@@ -241,7 +241,7 @@ export const SPEC_CATEGORIES = [
 
 
 export const SPEC_TABLE = {
-  "Model-1": {
+  "model-1": {
     Frame: [
       { label: "Bottom Bracket Shell", value: "BSA 73mm" },
       { label: "Rear Brake Mount", value: "200 PM" },
@@ -305,7 +305,7 @@ export const SPEC_TABLE = {
   // MODEL 2
   // ---------------------------------------------
 
-  "Model-2": {
+  "model-2": {
     Frame: [
       { label: "Bottom Bracket Shell", value: "BSA 73mm" },
       { label: "Rear Brake Mount", value: "180 PM" },
@@ -369,7 +369,7 @@ export const SPEC_TABLE = {
   // MODEL 3
   // ---------------------------------------------
 
-  "Model-3": {
+  "model-3": {
     Frame: [
       { label: "Bottom Bracket Shell", value: "BB92 Pressfit" },
       { label: "Rear Brake Mount", value: "200 PM" },
