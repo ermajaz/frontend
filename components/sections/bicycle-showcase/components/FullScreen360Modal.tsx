@@ -19,7 +19,7 @@ export default function Fullscreen360Modal({ bike, onClose }: { bike: any; onClo
     >
       <motion.button
         onClick={onClose}
-        className="absolute top-6 right-6 z-50 text-white/90 bg-white/6 px-3 py-2 rounded"
+        className="absolute top-6 right-6 z-50 text-white/90 cursor-pointer bg-white/6 px-3 py-2 rounded"
       >
         <X />
       </motion.button>

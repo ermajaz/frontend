@@ -7,8 +7,8 @@ import Logo from "./components/Logo";
 import NavList from "./components/NavList";
 import HeaderIcons from "./components/HeaderIcons";
 import SearchOverlay from "./components/SearchOverlay";
-import ProductsOverlay from "./components/ProductsOverlay";
 import UserMenuModal from "./components/UserMenuModal";
+import ProductsOverlay from "./components/overlays/products/ProductsOverlay";
 
 export default function HeaderDesktop() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -48,7 +48,7 @@ export default function HeaderDesktop() {
       </header>
 
       {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
-      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} />}
+      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} onSearchOpen={() => setSearchOpen(true)}/>}
     </>
   );
 }

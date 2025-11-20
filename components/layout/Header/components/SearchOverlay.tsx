@@ -1,14 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { X } from "lucide-react";
 import Image from "next/image";
 import SearchInput from "./SearchInput";
-import SearchSuggestions from "./SearchSuggestions";
+import Category from "@/components/sections/category";
+import NavList from "./NavList";
+import ProductsOverlay from "./overlays/products/ProductsOverlay";
 
 export default function SearchOverlay({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [productsOpen, setProductsOpen] = useState(false);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -20,7 +23,6 @@ export default function SearchOverlay({ onClose }: { onClose: () => void }) {
     );
 
     document.body.style.overflow = "hidden";
-
     return () => {
       document.body.style.overflow = "";
     };
@@ -29,20 +31,33 @@ export default function SearchOverlay({ onClose }: { onClose: () => void }) {
   return (
     <div
       ref={ref}
-      className="fixed inset-0 z-200 bg-superblack text-white flex flex-col"
+      className="fixed inset-0 z-200 bg-superblack text-white flex flex-col h-screen mx-auto max-w-[1440px]"
     >
-      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-        <Image src="/images/website-logo.png" alt="Radkaat" width={48} height={48} />
-        <button onClick={onClose} className="p-2">
+      {/* 🔥 Fixed Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
+        <Image
+          src="/images/website-logo.png"
+          alt="Radkaat"
+          width={48}
+          height={48}
+        />
+        <NavList onProductsOpen={() => setProductsOpen(true)} />
+        <button onClick={onClose} className="p-2 cursor-pointer">
           <X size={40} />
         </button>
       </div>
 
-      <div className="flex justify-center my-[10%] px-6">
+      {/* 🔍 Center Search Input */}
+      <div className="flex justify-center py-[8%] px-6 shrink-0">
         <SearchInput />
       </div>
 
-      <SearchSuggestions />
+      {/* 🧩 Category section fills remaining area with scroll */}
+      <div className="flex-1 overflow-y-auto px-6 pb-4">
+        <Category />
+      </div>
+
+      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} />}
     </div>
   );
 }

@@ -12,9 +12,9 @@ import BikeImage from "./components/BikeImage";
 import RightButtonGroup from "./components/RightButtonGroup";
 
 import Fullscreen360Modal from "./components/FullScreen360Modal";
-import TechSidebar from "./components/TechSidebar";
 import BikeDesc from "./components/BikeDesc";
 import BottomVariantSelector from "./components/BottomVariantSelector";
+import TechSidebar from "./components/tech-sidebar";
 
 export default function BikeShowcaseDesktop() {
   const [activeBikeId, setActiveBikeId] = useState(BIKES[0].id);
@@ -96,9 +96,22 @@ export default function BikeShowcaseDesktop() {
 
       <AnimatePresence>
         {showTech && (
-          <TechSidebar bike={bike} onClose={() => setShowTech(false)} />
+          <div className="fixed inset-0 z-1150">
+            {/* 🔹 Backdrop — blur + dim + click to close */}
+            <motion.div
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowTech(false)}
+            />
+
+            {/* 🔹 Tech Sidebar */}
+            <TechSidebar onClose={() => setShowTech(false)} />
+          </div>
         )}
       </AnimatePresence>
+
     </section>
   );
 }

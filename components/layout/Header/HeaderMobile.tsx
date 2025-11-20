@@ -6,8 +6,8 @@ import { useHeaderScrollBehavior } from "./useHeaderScrollBehaviour";
 import Logo from "./components/Logo";
 import HeaderIcons from "./components/HeaderIcons";
 import SearchOverlay from "./components/SearchOverlay";
-import ProductsOverlay from "./components/ProductsOverlay";
 import UserMenuModal from "./components/UserMenuModal";
+import ProductsOverlay from "./components/overlays/products/ProductsOverlay";
 
 export default function HeaderMobile() {
   const headerRef = useRef<HTMLDivElement>(null);
